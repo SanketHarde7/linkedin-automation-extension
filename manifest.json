@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Automation Helper",
+  "version": "0.1.0",
+  "description": "Quick access extension for dashboard links and license status checks.",
+  "action": {
+    "default_title": "LinkedIn Automation",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ]
+}

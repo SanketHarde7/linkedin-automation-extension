@@ -1,0 +1,93 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(165deg, #f6fbff 0%, #eef4ff 100%);
+  color: #122033;
+  width: 360px;
+}
+
+.wrap {
+  padding: 14px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.sub {
+  margin: 2px 0 12px;
+  color: #52627a;
+  font-size: 12px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 0 6px;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #c5d2e6;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 8px;
+  font-size: 12px;
+  background: #ffffff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+button {
+  flex: 1;
+  border: 1px solid #b4c2da;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+button.primary {
+  border: none;
+  background: #1f6feb;
+  color: #ffffff;
+}
+
+.status {
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  background: #eaf2ff;
+  color: #133f86;
+}
+
+.links a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #bfd0eb;
+  color: #12449c;
+}

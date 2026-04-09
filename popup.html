@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Automation</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>LinkedIn Automation</h1>
+      <p class="sub">Quick status and links</p>
+
+      <label for="apiBase">API Base URL</label>
+      <input id="apiBase" type="text" placeholder="https://your-api.onrender.com/api" />
+
+      <label for="authToken">Dashboard Bearer Token</label>
+      <textarea id="authToken" rows="3" placeholder="Paste app_auth_token here"></textarea>
+
+      <label for="deviceId">Device ID</label>
+      <input id="deviceId" type="text" readonly />
+
+      <div class="row">
+        <button id="saveBtn" class="primary">Save</button>
+        <button id="checkBtn">Check License</button>
+      </div>
+
+      <div class="row">
+        <button id="startSessionBtn">Start Extension Session</button>
+        <button id="checkCreditsBtn">Check Draft Cost</button>
+      </div>
+
+      <div class="row">
+        <button id="consumeBtn">Consume Draft Credit</button>
+      </div>
+
+      <div id="statusBox" class="status">Ready</div>
+
+      <div class="row links">
+        <a id="dashboardLink" href="#" target="_blank" rel="noreferrer">Dashboard</a>
+        <a id="pricingLink" href="#" target="_blank" rel="noreferrer">Pricing</a>
+      </div>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

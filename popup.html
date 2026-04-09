@@ -9,29 +9,44 @@
   <body>
     <main class="wrap">
       <h1>LinkedIn Automation</h1>
-      <p class="sub">Quick status and links</p>
+      <p class="sub">Fast extension mode with credit limits</p>
 
       <label for="apiBase">API Base URL</label>
       <input id="apiBase" type="text" placeholder="https://your-api.onrender.com/api" />
 
-      <label for="authToken">Dashboard Bearer Token</label>
-      <textarea id="authToken" rows="3" placeholder="Paste app_auth_token here"></textarea>
+      <label for="loginEmail">Dashboard Email</label>
+      <input id="loginEmail" type="email" placeholder="you@example.com" />
 
       <label for="deviceId">Device ID</label>
       <input id="deviceId" type="text" readonly />
 
       <div class="row">
         <button id="saveBtn" class="primary">Save</button>
-        <button id="checkBtn">Check License</button>
+        <button id="loginStartBtn">Login & Start</button>
+      </div>
+
+      <div id="usageBox" class="status info">Usage: not loaded</div>
+
+      <label for="actionType">Extension Action</label>
+      <select id="actionType">
+        <option value="profile_search">Profile Search (limited)</option>
+        <option value="quick_comment_draft">Quick AI Comment Draft</option>
+        <option value="relevance_badge">Relevance Badge</option>
+        <option value="save_lead_shortcut">Save Lead Shortcut</option>
+        <option value="feed_monitor">Feed Monitor (webapp only)</option>
+      </select>
+
+      <div class="row">
+        <button id="refreshBtn">Refresh Usage</button>
+        <button id="checkCreditsBtn">Check Action</button>
       </div>
 
       <div class="row">
-        <button id="startSessionBtn">Start Extension Session</button>
-        <button id="checkCreditsBtn">Check Draft Cost</button>
+        <button id="consumeBtn">Run Action</button>
       </div>
 
-      <div class="row">
-        <button id="consumeBtn">Consume Draft Credit</button>
+      <div class="status warning" id="feedMonitorNotice">
+        Feed Monitor is webapp-only for now. Future paid unlock will enable it in extension with no limits.
       </div>
 
       <div id="statusBox" class="status">Ready</div>

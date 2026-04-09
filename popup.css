@@ -33,7 +33,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid #c5d2e6;
   border-radius: 8px;
@@ -77,6 +78,16 @@ button.primary {
   font-size: 12px;
   background: #eaf2ff;
   color: #133f86;
+}
+
+.status.info {
+  background: #eff6ff;
+  color: #1d4f91;
+}
+
+.status.warning {
+  background: #fff7e6;
+  color: #8a5b00;
 }
 
 .links a {

@@ -4,6 +4,7 @@ const defaultPricing = "https://linkedin-automation-frontend-phcy.onrender.com/p
 
 const apiBaseInput = document.getElementById("apiBase");
 const loginEmailInput = document.getElementById("loginEmail");
+const loginPasswordInput = document.getElementById("loginPassword");
 const deviceIdInput = document.getElementById("deviceId");
 const actionTypeSelect = document.getElementById("actionType");
 
@@ -80,9 +81,10 @@ function setUsage(entitlements) {
 }
 
 async function loadStored() {
-  const data = await chrome.storage.local.get(["apiBase", "loginEmail", "deviceId"]);
+  const data = await chrome.storage.local.get(["apiBase", "loginEmail", "loginPassword", "deviceId"]);
   apiBaseInput.value = data.apiBase || defaultApiBase;
   loginEmailInput.value = data.loginEmail || "";
+  loginPasswordInput.value = data.loginPassword || "";
   const deviceId = data.deviceId || generateDeviceId();
   deviceIdInput.value = deviceId;
   await chrome.storage.local.set({ deviceId });
@@ -94,6 +96,7 @@ async function loadStored() {
 async function saveSettings() {
   const apiBase = String(apiBaseInput.value || "").trim().replace(/\/$/, "");
   const loginEmail = String(loginEmailInput.value || "").trim();
+  const loginPassword = String(loginPasswordInput.value || "");
   const deviceId = String(deviceIdInput.value || "").trim() || generateDeviceId();
 
   if (!apiBase) {
@@ -104,19 +107,23 @@ async function saveSettings() {
     setStatus("Valid dashboard email is required.", "error");
     return;
   }
+  if (!loginPassword) {
+    setStatus("Dashboard password is required.", "error");
+    return;
+  }
 
-  await chrome.storage.local.set({ apiBase, loginEmail, deviceId });
+  await chrome.storage.local.set({ apiBase, loginEmail, loginPassword, deviceId });
   deviceIdInput.value = deviceId;
   setStatus("Saved settings.", "ok");
 }
 
-async function dashboardLogin(apiBase, loginEmail) {
+async function dashboardLogin(apiBase, loginEmail, loginPassword) {
   const res = await fetch(`${apiBase}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email: loginEmail }),
+    body: JSON.stringify({ email: loginEmail, password: loginPassword }),
   });
   const json = await res.json();
   if (!res.ok || !json.success) {
@@ -152,20 +159,21 @@ async function startExtensionSession(apiBase, authToken, deviceId) {
 async function loginAndStart() {
   const apiBase = String(apiBaseInput.value || "").trim().replace(/\/$/, "");
   const loginEmail = String(loginEmailInput.value || "").trim();
+  const loginPassword = String(loginPasswordInput.value || "");
   const deviceId = String(deviceIdInput.value || "").trim();
 
-  if (!apiBase || !loginEmail || !deviceId) {
-    setStatus("Save API base, email and device first.", "error");
+  if (!apiBase || !loginEmail || !loginPassword || !deviceId) {
+    setStatus("Save API base, email, password and device first.", "error");
     return;
   }
 
   setStatus("Logging in and starting extension session...");
   try {
-    const authToken = await dashboardLogin(apiBase, loginEmail);
+    const authToken = await dashboardLogin(apiBase, loginEmail, loginPassword);
     const data = await startExtensionSession(apiBase, authToken, deviceId);
     const extensionToken = String(data.extension_token || "");
 
-    await chrome.storage.local.set({ authToken, extensionToken, apiBase, loginEmail, deviceId });
+    await chrome.storage.local.set({ authToken, extensionToken, apiBase, loginEmail, loginPassword, deviceId });
     setUsage(data.entitlements || {});
     setStatus("Session ready.", "ok");
   } catch (err) {

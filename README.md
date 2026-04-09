@@ -38,10 +38,11 @@ Chrome extension package for LinkedIn Automation.
 1. Open extension popup.
 2. Set API base, default: `https://linkedin-automation-8tng.onrender.com/api`.
 3. Enter dashboard email.
-4. Click `Save`.
-5. Click `Login & Start`.
-6. Use `Refresh Usage` to see limits.
-7. Use `Check Action` and `Run Action`.
+4. Enter dashboard password.
+5. Click `Save`.
+6. Click `Login & Start`.
+7. Use `Refresh Usage` to see limits.
+8. Use `Check Action` and `Run Action`.
 
 ## Next planned scope
 
